@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gatherly - Create New Event Wizard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#e3e2e2",
+            "surface-tint": "#9a4600",
+            "on-background": "#1b1c1c",
+            "primary-container": "#e87524",
+            "inverse-on-surface": "#f3f0ef",
+            "secondary-fixed": "#e3e2e2",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#eae7e7",
+            "primary-fixed": "#ffdbc9",
+            "background": "#fcf9f8",
+            "surface-container-highest": "#e4e2e1",
+            "surface-variant": "#e4e2e1",
+            "on-surface-variant": "#574237",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "outline-variant": "#dec1b2",
+            "outline": "#8a7265",
+            "on-primary-fixed": "#321200",
+            "on-secondary-container": "#646464",
+            "on-tertiary-fixed-variant": "#783100",
+            "on-surface": "#1b1c1c",
+            "primary-fixed-dim": "#ffb68d",
+            "secondary-fixed-dim": "#c7c6c6",
+            "surface-container": "#f0eded",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#1b1c1c",
+            "inverse-surface": "#303030",
+            "tertiary-container": "#e8742e",
+            "surface-bright": "#fcf9f8",
+            "surface-container-low": "#f6f3f2",
+            "secondary": "#5e5e5e",
+            "on-error": "#ffffff",
+            "surface-dim": "#dcd9d9",
+            "on-primary-fixed-variant": "#763300",
+            "on-secondary-fixed-variant": "#464747",
+            "surface": "#fcf9f8",
+            "inverse-primary": "#ffb68d",
+            "on-tertiary-fixed": "#341100",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb691",
+            "primary": "#9a4600",
+            "tertiary": "#9e4300",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#ffdbcb",
+            "on-primary-container": "#4f2000",
+            "on-tertiary-container": "#501e00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "space-xl": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-md-medium": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "caption": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "section-title": ["Inter"],
+            "numeric-stat": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "body-md-medium": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "section-title": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "numeric-stat": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: 'liga';
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+  </style>
+</head>
+<body class="h-full bg-[#F7F7F5] text-on-surface antialiased overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Side Navigation Component -->
+<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between p-4 z-40 bg-surface-container-lowest dark:bg-surface-container-low border-r border-outline-variant/30">
+<!-- Top Brand & Action -->
+<div class="flex flex-col gap-5">
+<!-- Brand Logo Area -->
+<div class="flex items-center gap-3 px-2 pt-1">
+<div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-white font-headline-sm text-headline-sm font-bold shadow-none">
+          G
+        </div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-semibold text-primary">Gatherly</span>
+<span class="text-caption font-caption text-secondary -mt-1">Event Planning Assistant</span>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full flex items-center justify-center gap-2 bg-[#E87524] hover:bg-[#C95D16] active:bg-[#A94F13] text-white py-2.5 px-4 rounded-lg text-body-md-medium font-body-md-medium transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>+ Create Event</span>
+</button>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1 mt-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary-fixed/30 text-primary font-medium border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined" data-icon="event" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="text-label-md font-label-md">My Events</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="text-label-md font-label-md">Calendar</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="check_box">check_box</span>
+<span class="text-label-md font-label-md">Tasks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-label-md font-label-md">Guests</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="text-label-md font-label-md">Vendors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-label-md font-label-md">Budget &amp; Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-label-md font-label-md">AI Planner</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface font-medium hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Footer Controls -->
+<div class="border-t border-[#E7E5E2] pt-3 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:text-on-surface text-label-md font-label-md hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Help &amp; Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:text-on-surface text-label-md font-label-md hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Header -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-30 bg-surface-container-lowest border-b border-[#E7E5E2]">
+<div class="flex items-center gap-4">
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary pointer-events-none text-[18px]" data-icon="search">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg border border-[#E7E5E2] bg-white text-body-md font-body-md text-on-surface placeholder:text-secondary focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13] transition-all" placeholder="Search events, vendors, tasks..." type="text"/>
+</div>
+<div class="h-4 w-px bg-[#E7E5E2]"></div>
+<div class="text-label-md font-label-md text-secondary">
+        Workspace: <span class="text-on-surface font-semibold">Annual Gala 2025</span>
+</div>
+</div>
+<!-- Right Controls -->
+<div class="flex items-center gap-3">
+<button class="p-2 text-secondary hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" title="Notifications" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-secondary hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" title="Help" type="button">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-6 w-px bg-[#E7E5E2] mx-1"></div>
+<div class="flex items-center gap-3 pl-1">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-[#E7E5E2] flex items-center justify-center text-primary font-semibold text-label-md">
+          AR
+        </div>
+<div class="flex flex-col text-left">
+<span class="text-label-md font-label-md font-semibold text-on-surface leading-tight">Ananya Roy</span>
+<span class="text-caption font-caption text-secondary">Lead Planner</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Viewport Canvas -->
+<main class="ml-64 pt-16 min-h-screen bg-[#F7F7F5] pb-20">
+<div class="max-w-5xl mx-auto px-8 py-8">
+<!-- Breadcrumb Header -->
+<nav class="flex items-center gap-2 mb-4 text-label-md font-label-md text-secondary">
+<a class="hover:text-on-surface transition-colors" href="#">Events</a>
+<span class="text-[#dec1b2]">/</span>
+<span class="text-on-surface font-semibold">New Event</span>
+</nav>
+<!-- Wizard Page Title -->
+<div class="mb-8">
+<h1 class="text-headline-lg font-headline-lg text-[#252525] tracking-tight">Create a new event</h1>
+<p class="text-body-lg font-body-lg text-secondary mt-1">Set up the foundation for your event. You can edit any detail later or let Gatherly AI fill in suggestions.</p>
+</div>
+<!-- Horizontal Step Indicator Bar -->
+<div class="bg-white border border-[#E7E5E2] rounded-xl px-8 py-5 mb-8">
+<div class="relative flex items-center justify-between">
+<!-- Step connecting line base -->
+<div class="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-0.5 bg-[#E7E5E2] -z-0"></div>
+<!-- Step 1 (Active) -->
+<div class="relative z-10 flex items-center gap-3 bg-white pr-4">
+<div class="w-7 h-7 rounded-full bg-[#E87524] text-white flex items-center justify-center text-label-sm font-label-sm font-bold shadow-none ring-4 ring-[#FFF1E5]">
+              1
+            </div>
+<div class="flex flex-col">
+<span class="text-label-md font-label-md font-semibold text-[#252525]">Event basics</span>
+<span class="text-caption font-caption text-primary">In progress</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex items-center gap-3 bg-white px-4">
+<div class="w-7 h-7 rounded-full bg-white border-2 border-[#E7E5E2] text-[#747474] flex items-center justify-center text-label-sm font-label-sm font-semibold">
+              2
+            </div>
+<span class="text-label-md font-label-md text-[#747474]">Budget &amp; guests</span>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex items-center gap-3 bg-white px-4">
+<div class="w-7 h-7 rounded-full bg-white border-2 border-[#E7E5E2] text-[#747474] flex items-center justify-center text-label-sm font-label-sm font-semibold">
+              3
+            </div>
+<span class="text-label-md font-label-md text-[#747474]">Preferences</span>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex items-center gap-3 bg-white pl-4">
+<div class="w-7 h-7 rounded-full bg-white border-2 border-[#E7E5E2] text-[#747474] flex items-center justify-center text-label-sm font-label-sm font-semibold">
+              4
+            </div>
+<span class="text-label-md font-label-md text-[#747474]">Review &amp; create</span>
+</div>
+</div>
+</div>
+<!-- Main Creation Form Card -->
+<section class="bg-white border border-[#E7E5E2] rounded-xl p-8 shadow-none space-y-8">
+<!-- SECTION 1: Event Identity -->
+<div class="space-y-6">
+<div class="border-b border-[#E7E5E2] pb-3">
+<h2 class="text-section-title font-section-title text-[#252525]">1. Basic Details</h2>
+<p class="text-body-md font-body-md text-secondary">General identifier and nature of the occasion.</p>
+</div>
+<!-- Field 1: Event Name -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium" for="event_name">
+              Event Name <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 rounded-lg border border-[#E7E5E2] bg-white text-body-lg font-body-lg text-[#252525] focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13] transition-colors" id="event_name" placeholder="e.g., Annual Family Reunion" type="text" value="Ananya &amp; Rohan's Wedding"/>
+<span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-secondary text-[20px]" data-icon="edit">edit</span>
+</div>
+<p class="text-caption font-caption text-secondary mt-1.5">You can share this official name on invitations and guest notifications.</p>
+</div>
+<!-- Field 2: Event Type Select Grid -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+              Event Type <span class="text-error">*</span>
+</label>
+<div class="grid grid-cols-3 gap-3">
+<!-- Wedding (Selected) -->
+<div class="relative flex items-center justify-between p-3.5 rounded-lg border-2 border-[#E87524] bg-[#FFF1E5] cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[22px]" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span class="text-body-md-medium font-body-md-medium text-[#252525] font-semibold">Wedding</span>
+</div>
+<div class="w-5 h-5 rounded-full bg-[#E87524] flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]" data-icon="check">check</span>
+</div>
+</div>
+<!-- Birthday -->
+<div class="relative flex items-center justify-between p-3.5 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="cake">cake</span>
+<span class="text-body-md font-body-md text-[#252525]">Birthday</span>
+</div>
+</div>
+<!-- Anniversary -->
+<div class="relative flex items-center justify-between p-3.5 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="celebration">celebration</span>
+<span class="text-body-md font-body-md text-[#252525]">Anniversary</span>
+</div>
+</div>
+<!-- Community Event -->
+<div class="relative flex items-center justify-between p-3.5 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="groups">groups</span>
+<span class="text-body-md font-body-md text-[#252525]">Community Event</span>
+</div>
+</div>
+<!-- Festival -->
+<div class="relative flex items-center justify-between p-3.5 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="festival">festival</span>
+<span class="text-body-md font-body-md text-[#252525]">Festival</span>
+</div>
+</div>
+<!-- Corporate / Other -->
+<div class="relative flex items-center justify-between p-3.5 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[22px]" data-icon="business_center">business_center</span>
+<span class="text-body-md font-body-md text-[#252525]">Corporate / Other</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Date, Time & Venue -->
+<div class="space-y-6 pt-2">
+<div class="border-b border-[#E7E5E2] pb-3">
+<h2 class="text-section-title font-section-title text-[#252525]">2. Schedule &amp; Location</h2>
+<p class="text-body-md font-body-md text-secondary">Specify when and where the event takes place.</p>
+</div>
+<!-- Date & Time Row -->
+<div class="grid grid-cols-2 gap-6">
+<!-- Start & End Date -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+                Date Range <span class="text-error">*</span>
+</label>
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]" data-icon="calendar_today">calendar_today</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg border border-[#E7E5E2] bg-white text-body-md font-body-md text-[#252525] focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13]" type="text" value="Dec 18, 2025"/>
+</div>
+<span class="text-secondary font-medium">to</span>
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]" data-icon="calendar_today">calendar_today</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg border border-[#E7E5E2] bg-white text-body-md font-body-md text-[#252525] focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13]" type="text" value="Dec 19, 2025"/>
+</div>
+</div>
+</div>
+<!-- Time Range -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+                Daily Hours
+              </label>
+<div class="flex items-center gap-2">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]" data-icon="schedule">schedule</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg border border-[#E7E5E2] bg-white text-body-md font-body-md text-[#252525] focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13]" type="text" value="10:00 AM"/>
+</div>
+<span class="text-secondary font-medium">to</span>
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]" data-icon="schedule">schedule</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg border border-[#E7E5E2] bg-white text-body-md font-body-md text-[#252525] focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13]" type="text" value="11:30 PM"/>
+</div>
+</div>
+</div>
+</div>
+<!-- City & Location Field -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+              City &amp; Region <span class="text-error">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-secondary text-[20px]" data-icon="location_on">location_on</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg border border-[#E7E5E2] bg-white text-body-md font-body-md text-[#252525] focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13]" type="text" value="Bengaluru, Karnataka, India"/>
+</div>
+</div>
+<!-- Venue Status Segmented Control -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+              Venue Booking Status
+            </label>
+<div class="grid grid-cols-3 gap-3">
+<label class="flex items-center gap-2.5 p-3 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] cursor-pointer">
+<input class="w-4 h-4 text-[#E87524] border-[#747474] focus:ring-[#A94F13]" name="venue_status" type="radio"/>
+<span class="text-body-md font-body-md text-[#252525]">Not decided yet</span>
+</label>
+<label class="flex items-center gap-2.5 p-3 rounded-lg border-2 border-[#E87524] bg-[#FFF1E5] cursor-pointer">
+<input checked="" class="w-4 h-4 text-[#E87524] border-[#E87524] focus:ring-[#A94F13]" name="venue_status" type="radio"/>
+<span class="text-body-md-medium font-body-md-medium text-[#252525] font-semibold">Shortlisted (2 venues)</span>
+</label>
+<label class="flex items-center gap-2.5 p-3 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] cursor-pointer">
+<input class="w-4 h-4 text-[#E87524] border-[#747474] focus:ring-[#A94F13]" name="venue_status" type="radio"/>
+<span class="text-body-md font-body-md text-[#252525]">Booked &amp; Confirmed</span>
+</label>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Budget & Guests -->
+<div class="space-y-6 pt-2">
+<div class="border-b border-[#E7E5E2] pb-3">
+<h2 class="text-section-title font-section-title text-[#252525]">3. Scope &amp; Expectations</h2>
+<p class="text-body-md font-body-md text-secondary">Scale parameters used for AI timeline and budget estimation.</p>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<!-- Budget Metric Input -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+                Total Estimated Budget (INR)
+              </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]" data-icon="currency_rupee">currency_rupee</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg border border-[#E7E5E2] bg-white text-body-md font-body-md text-[#252525] focus:outline-none focus:border-[#E87524] focus:ring-1 focus:ring-[#A94F13]" type="text" value="₹ 4,50,000"/>
+</div>
+<p class="text-caption font-caption text-secondary mt-1">Can be adjusted anytime</p>
+</div>
+<!-- Expected Guest Count Stepper -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+                Expected Guest Count
+              </label>
+<div class="flex items-center border border-[#E7E5E2] rounded-lg bg-white overflow-hidden h-10">
+<button class="w-10 h-full flex items-center justify-center text-secondary hover:bg-[#F7F7F5] border-r border-[#E7E5E2] transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="remove">remove</span>
+</button>
+<input class="flex-1 h-full text-center border-none text-body-md-medium font-body-md-medium text-[#252525] focus:ring-0" type="number" value="180"/>
+<button class="w-10 h-full flex items-center justify-center text-secondary hover:bg-[#F7F7F5] border-l border-[#E7E5E2] transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+</button>
+</div>
+<p class="text-caption font-caption text-secondary mt-1">Adults &amp; children combined</p>
+</div>
+<!-- Venue Setting Segmented Button -->
+<div>
+<label class="block text-label-md font-label-md text-[#252525] mb-2 font-medium">
+                Venue Setting
+              </label>
+<div class="inline-flex w-full h-10 rounded-lg border border-[#E7E5E2] p-1 bg-[#F7F7F5]">
+<button class="flex-1 rounded-md text-label-sm font-label-sm text-[#747474] hover:text-[#252525] transition-colors" type="button">
+                  Indoor
+                </button>
+<button class="flex-1 rounded-md text-label-sm font-label-sm text-[#747474] hover:text-[#252525] transition-colors" type="button">
+                  Outdoor
+                </button>
+<button class="flex-1 rounded-md bg-white text-label-sm font-label-sm font-semibold text-[#252525] border border-[#E7E5E2] shadow-none" type="button">
+                  Mixed / Hybrid
+                </button>
+</div>
+<p class="text-caption font-caption text-secondary mt-1">Controls weather contingency plans</p>
+</div>
+</div>
+</div>
+<!-- SECTION 4: AI Kickstart Toggle Card -->
+<div class="p-5 rounded-lg bg-[#FFF1E5] border border-[#E87524] flex items-center justify-between">
+<div class="flex items-start gap-4">
+<div class="w-9 h-9 rounded-lg bg-white border border-[#FBD9BE] flex items-center justify-center text-primary mt-0.5">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-body-md-medium font-body-md-medium text-[#252525] font-semibold">Smart AI Kickstart</span>
+<span class="text-caption font-caption px-2 py-0.5 rounded bg-white text-[#C95D16] border border-[#FBD9BE] font-semibold">Recommended</span>
+</div>
+<p class="text-body-md font-body-md text-[#252525] mt-0.5">
+                Generate initial timeline and budget breakdown automatically using Gatherly AI based on Bangalore wedding market averages.
+              </p>
+</div>
+</div>
+<!-- Solid Toggle Switch (Checked) -->
+<label class="relative inline-flex items-center cursor-pointer ml-4 flex-shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-[#E7E5E2] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E87524]"></div>
+</label>
+</div>
+<!-- Bottom Actions Bar -->
+<div class="border-t border-[#E7E5E2] pt-6 flex items-center justify-between">
+<button class="px-4 py-2.5 rounded-lg border border-[#E7E5E2] bg-white hover:bg-[#F7F7F5] text-body-md font-body-md-medium text-[#252525] transition-colors" type="button">
+            Save as draft
+          </button>
+<div class="flex items-center gap-4">
+<button class="text-body-md font-body-md text-secondary hover:text-[#252525] px-3 py-2 transition-colors" type="button">
+              Cancel
+            </button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#E87524] hover:bg-[#C95D16] active:bg-[#A94F13] text-white font-body-md-medium text-body-md font-medium transition-colors" type="button">
+<span>Continue to Preferences</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

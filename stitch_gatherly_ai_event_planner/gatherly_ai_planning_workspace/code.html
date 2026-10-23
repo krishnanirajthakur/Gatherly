@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gatherly - AI Planning Workspace</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#e3e2e2",
+            "surface-tint": "#9a4600",
+            "on-background": "#1b1c1c",
+            "primary-container": "#e87524",
+            "inverse-on-surface": "#f3f0ef",
+            "secondary-fixed": "#e3e2e2",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#eae7e7",
+            "primary-fixed": "#ffdbc9",
+            "background": "#fcf9f8",
+            "surface-container-highest": "#e4e2e1",
+            "surface-variant": "#e4e2e1",
+            "on-surface-variant": "#574237",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "outline-variant": "#dec1b2",
+            "outline": "#8a7265",
+            "on-primary-fixed": "#321200",
+            "on-secondary-container": "#646464",
+            "on-tertiary-fixed-variant": "#783100",
+            "on-surface": "#1b1c1c",
+            "primary-fixed-dim": "#ffb68d",
+            "secondary-fixed-dim": "#c7c6c6",
+            "surface-container": "#f0eded",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#1b1c1c",
+            "inverse-surface": "#303030",
+            "tertiary-container": "#e8742e",
+            "surface-bright": "#fcf9f8",
+            "surface-container-low": "#f6f3f2",
+            "secondary": "#5e5e5e",
+            "on-error": "#ffffff",
+            "surface-dim": "#dcd9d9",
+            "on-primary-fixed-variant": "#763300",
+            "on-secondary-fixed-variant": "#464747",
+            "surface": "#fcf9f8",
+            "inverse-primary": "#ffb68d",
+            "on-tertiary-fixed": "#341100",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb691",
+            "primary": "#9a4600",
+            "tertiary": "#9e4300",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#ffdbcb",
+            "on-primary-container": "#4f2000",
+            "on-tertiary-container": "#501e00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "space-xl": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-md-medium": ["Inter"],
+            "headline-md": ["Inter"],
+            "label-md": ["Inter"],
+            "label-sm": ["Inter"],
+            "caption": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "section-title": ["Inter"],
+            "numeric-stat": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"]
+          },
+          "fontSize": {
+            "body-md-medium": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "section-title": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "numeric-stat": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="h-full bg-background text-on-surface antialiased flex flex-col font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Side Navigation Bar (Anchored from JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between p-4 z-40 bg-surface-container-lowest dark:bg-surface-container-low border-r border-outline-variant/30 dark:border-outline/20">
+<div class="flex flex-col gap-6">
+<!-- Brand & Header -->
+<div class="flex items-center gap-3 px-2 pt-1">
+<div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-headline-sm">
+          G
+        </div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-semibold text-primary dark:text-primary-fixed leading-tight">Gatherly</span>
+<span class="text-caption font-caption text-secondary">Event Planning Assistant</span>
+</div>
+</div>
+<!-- Quick Action -->
+<button class="w-full bg-primary-container text-on-primary font-body-md-medium text-body-md-medium py-2 px-3 rounded-lg flex items-center justify-center gap-2 hover:bg-[#c95d16] active:scale-[0.99] transition-all duration-150">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Create Event</span>
+</button>
+<!-- Nav Items -->
+<nav class="flex flex-col gap-1">
+<!-- Overview -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-label-md font-label-md">Overview</span>
+</a>
+<!-- My Events -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">event</span>
+<span class="text-label-md font-label-md">My Events</span>
+</a>
+<!-- Calendar -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span class="text-label-md font-label-md">Calendar</span>
+</a>
+<!-- Tasks -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">check_box</span>
+<span class="text-label-md font-label-md">Tasks</span>
+</a>
+<!-- Guests -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-label-md font-label-md">Guests</span>
+</a>
+<!-- Vendors -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span class="text-label-md font-label-md">Vendors</span>
+</a>
+<!-- Budget & Expenses -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-label-md font-label-md">Budget &amp; Expenses</span>
+</a>
+<!-- AI Planner (ACTIVE) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary-fixed/30 dark:bg-primary-container/20 text-primary dark:text-primary-fixed font-medium border-l-4 border-primary dark:border-primary-fixed" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-label-md font-label-md">AI Planner</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary dark:text-secondary-fixed hover:text-on-surface dark:hover:text-inverse-on-surface font-medium hover:bg-surface-container dark:hover:bg-surface-container-high transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Footer navigation -->
+<div class="border-t border-outline-variant/30 pt-3 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-label-md font-label-md">Help &amp; Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-label-md font-label-md">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Top Application Bar (Anchored from JSON) -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-6 z-30 bg-surface-container-lowest dark:bg-surface-container-low border-b border-outline-variant/30 dark:border-outline/20">
+<div class="flex items-center gap-4">
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-secondary">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-background border border-[#E7E5E2] rounded-lg text-body-md text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary h-[38px]" placeholder="Search parameters, plans, vendors..." type="text"/>
+</div>
+<div class="h-5 w-[1px] bg-[#E7E5E2]"></div>
+<div class="flex items-center gap-2">
+<span class="text-caption font-caption text-secondary uppercase tracking-wider">Workspace:</span>
+<span class="text-section-title font-section-title font-semibold text-on-surface dark:text-inverse-on-surface">Annual Gala 2025</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-primary-container text-on-primary font-body-md-medium text-body-md-medium py-1.5 px-3.5 rounded-lg flex items-center gap-1.5 hover:bg-[#c95d16] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Create Event</span>
+</button>
+<div class="h-6 w-[1px] bg-[#E7E5E2] mx-1"></div>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<div class="flex items-center pl-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-[#E7E5E2] flex items-center justify-center text-on-surface font-body-md-medium text-caption" title="User avatar profile photo">
+          RK
+        </div>
+</div>
+</div>
+</header>
+<!-- Main Canvas Container -->
+<main class="ml-64 pt-16 min-h-screen bg-[#F7F7F5] p-8">
+<div class="max-w-[1280px] mx-auto space-y-6">
+<!-- Page Header -->
+<section class="space-y-1">
+<h1 class="text-headline-lg font-headline-lg text-[#252525] tracking-tight">AI Planning Workspace</h1>
+<p class="text-body-md font-body-md text-[#747474]">
+          Build a practical plan around your budget, priorities, and timeline. Structured recommendations generated from your event parameters.
+        </p>
+</section>
+<!-- AI Context Ribbon -->
+<section class="bg-surface-container-lowest border border-[#E7E5E2] rounded-xl px-5 py-3.5 flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3 text-body-md-medium font-body-md-medium">
+<div class="flex items-center gap-1.5">
+<span class="text-[#747474] text-label-md font-label-md">Selected Event:</span>
+<div class="relative inline-flex items-center">
+<button class="flex items-center gap-1.5 text-[#252525] font-semibold hover:text-primary-container transition-colors focus:outline-none">
+<span>Ananya &amp; Rohan's Wedding</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+<span class="text-[#E7E5E2]">|</span>
+<span class="text-[#747474]">Type: <strong class="text-[#252525] font-medium">Wedding</strong></span>
+<span class="text-[#E7E5E2]">·</span>
+<span class="text-[#747474]">Location: <strong class="text-[#252525] font-medium">Bengaluru</strong></span>
+<span class="text-[#E7E5E2]">·</span>
+<span class="text-[#747474]">Guests: <strong class="text-[#252525] font-medium">180</strong></span>
+<span class="text-[#E7E5E2]">·</span>
+<span class="text-[#747474]">Budget: <strong class="text-[#252525] font-medium">₹4,50,000</strong></span>
+<span class="text-[#E7E5E2]">·</span>
+<span class="text-[#747474]">Timeline: <strong class="text-primary-container font-medium">56 Days left</strong></span>
+</div>
+<!-- Connection Badge -->
+<div class="flex items-center gap-2 px-2.5 py-1 bg-[#F7F7F5] border border-[#E7E5E2] rounded-md">
+<span class="w-2 h-2 rounded-full bg-[#287A4B] inline-block"></span>
+<span class="text-caption font-caption text-[#252525] font-medium">Local AI Inference Engine Connected</span>
+</div>
+</section>
+<!-- Top AI Interactive Prompt & Refinement Panel -->
+<section class="bg-surface-container-lowest border border-[#E7E5E2] rounded-xl p-6 space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-[#FFF1E5] border border-[#FBD9BE] flex items-center justify-center text-primary-container flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="flex-1 space-y-1">
+<label class="text-label-md font-label-md text-[#252525] font-semibold block" for="ai-prompt-input">Inference Direction &amp; Logistics Goal</label>
+<div class="relative">
+<textarea class="w-full bg-[#FFFFFF] border border-[#E7E5E2] rounded-lg p-3 text-body-md font-body-md text-[#252525] placeholder-[#747474] focus:border-primary-container focus:ring-1 focus:ring-primary focus:outline-none transition-colors" id="ai-prompt-input" placeholder="Direct the AI planner to analyze constraints, draft agendas, or balance allocations..." rows="3">Analyze my remaining ₹1,65,000 budget for Ananya &amp; Rohan's Wedding. Generate a cost-effective floral decoration plan and a detailed 45-day milestone checklist.</textarea>
+</div>
+</div>
+</div>
+<!-- Quick Prompts Pill Row -->
+<div class="flex items-center gap-2 flex-wrap pl-11">
+<span class="text-label-sm font-label-sm text-[#747474]">Suggested Quick Prompts:</span>
+<button class="px-2.5 py-1 rounded-[6px] bg-[#F7F7F5] text-[#252525] border border-[#E7E5E2] text-label-sm font-label-sm hover:border-[#D5D3CF] hover:bg-[#FFFFFF] transition-all">
+            "Help me reduce catering costs"
+          </button>
+<button class="px-2.5 py-1 rounded-[6px] bg-[#F7F7F5] text-[#252525] border border-[#E7E5E2] text-label-sm font-label-sm hover:border-[#D5D3CF] hover:bg-[#FFFFFF] transition-all">
+            "Create a 45-day wedding milestone checklist"
+          </button>
+<button class="px-2.5 py-1 rounded-[6px] bg-[#F7F7F5] text-[#252525] border border-[#E7E5E2] text-label-sm font-label-sm hover:border-[#D5D3CF] hover:bg-[#FFFFFF] transition-all">
+            "Suggest traditional Bangalore welcome hampers"
+          </button>
+<button class="px-2.5 py-1 rounded-[6px] bg-[#F7F7F5] text-[#252525] border border-[#E7E5E2] text-label-sm font-label-sm hover:border-[#D5D3CF] hover:bg-[#FFFFFF] transition-all">
+            "Draft vendor negotiation questions"
+          </button>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between pt-2 border-t border-[#E7E5E2] pl-11">
+<div class="flex items-center gap-2 text-caption font-caption text-[#747474]">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span>Synthesizes regional venue rates and vendor catalog averages</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-[#FFFFFF] text-[#252525] border border-[#E7E5E2] rounded-lg px-4 py-2 font-body-md-medium text-body-md-medium hover:bg-[#F7F7F5] hover:border-[#D5D3CF] transition-colors">
+              Save to Event Workspace
+            </button>
+<button class="bg-[#FFFFFF] text-[#252525] border border-[#E7E5E2] rounded-lg px-4 py-2 font-body-md-medium text-body-md-medium hover:bg-[#F7F7F5] hover:border-[#D5D3CF] transition-colors">
+              Regenerate Section
+            </button>
+<button class="bg-[#E87524] text-[#FFFFFF] font-body-md-medium text-body-md-medium font-semibold px-6 py-2.5 rounded-lg hover:bg-[#C95D16] active:bg-[#A94F13] transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Generate Plan</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Main Workspace Layout (Split 2-Column: 8 cols plan, 4 cols controls) -->
+<div class="grid grid-cols-12 gap-6 items-start">
+<!-- LEFT COLUMN: Generated Structured Plan (8 cols) -->
+<div class="col-span-8 space-y-6">
+<!-- AI Disclosure Banner -->
+<div class="bg-[#F7F7F5] border border-[#E7E5E2] rounded-lg p-3.5 flex items-center gap-3 text-body-md font-body-md text-[#252525]">
+<span class="material-symbols-outlined text-primary-container text-[20px] flex-shrink-0">info</span>
+<p class="leading-snug">
+              AI-generated suggestions based on regional event data and your budget parameters. Please review and customize before booking.
+            </p>
+</div>
+<!-- Section 1: Theme & Decor Concept -->
+<div class="bg-surface-container-lowest border border-[#E7E5E2] rounded-xl p-6 space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-[#E7E5E2]">
+<div class="flex items-center gap-2">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wider">Concept Blueprint</span>
+<span class="text-[#E7E5E2]">/</span>
+<h2 class="text-section-title font-section-title text-[#252525] font-semibold">
+                  Theme &amp; Decor Concept: Modern Bengaluru Marigold Elegance
+                </h2>
+</div>
+<span class="px-2 py-0.5 rounded-[6px] bg-[#FFF1E5] text-[#C95D16] border border-[#FBD9BE] text-label-sm font-label-sm">
+                Cost-Optimized
+              </span>
+</div>
+<!-- Structured Summary Cards Bento -->
+<div class="grid grid-cols-3 gap-4">
+<!-- Atmosphere Card -->
+<div class="bg-[#F7F7F5] border border-[#E7E5E2] rounded-lg p-4 flex flex-col justify-between">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wide">Atmosphere</span>
+<p class="text-body-md font-body-md text-[#252525] mt-2">
+                  Warm sunlit botanical aesthetic featuring terracotta urns, brass accents, and minimalist open canopy mandap structure.
+                </p>
+<div class="mt-3 flex items-center gap-1.5 text-label-sm font-label-sm text-[#747474]">
+<span class="material-symbols-outlined text-[16px]">wb_sunny</span>
+<span>Daylight-first execution</span>
+</div>
+</div>
+<!-- Color Palette Card -->
+<div class="bg-[#F7F7F5] border border-[#E7E5E2] rounded-lg p-4 flex flex-col justify-between">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wide">Color Palette Swatches</span>
+<div class="mt-2 space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-[4px] border border-[#252525]/10 inline-block bg-[#E87524]"></span>
+<span class="text-label-sm font-label-sm text-[#252525]">#E87524 Terracotta</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-[4px] border border-[#252525]/10 inline-block bg-[#F4B400]"></span>
+<span class="text-label-sm font-label-sm text-[#252525]">Marigold Gold</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-[4px] border border-[#252525]/10 inline-block bg-[#1B4D3E]"></span>
+<span class="text-label-sm font-label-sm text-[#252525]">Forest Green</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-5 h-5 rounded-[4px] border border-[#E7E5E2] inline-block bg-[#FFFFF0]"></span>
+<span class="text-label-sm font-label-sm text-[#252525]">Ivory White</span>
+</div>
+</div>
+</div>
+<!-- Sustainable Sourcing Card -->
+<div class="bg-[#F7F7F5] border border-[#E7E5E2] rounded-lg p-4 flex flex-col justify-between">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wide">Sustainable Floral Sourcing</span>
+<p class="text-body-md font-body-md text-[#252525] mt-2">
+                  Procure directly from KR Flower Market at dawn. Shift 65% of installations from imported blooms to native genda and jasmine garlands.
+                </p>
+<div class="mt-3 flex items-center gap-1.5 text-label-sm font-label-sm text-[#287A4B] font-medium">
+<span class="material-symbols-outlined text-[16px]">eco</span>
+<span>Zero cold-storage freight overhead</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Optimized Budget Allocation -->
+<div class="bg-surface-container-lowest border border-[#E7E5E2] rounded-xl p-6 space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-[#E7E5E2]">
+<div>
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wider">Financial Synthesis</span>
+<h2 class="text-section-title font-section-title text-[#252525] font-semibold">
+                  Optimized Budget Allocation for Remaining ₹1,65,000
+                </h2>
+</div>
+<button class="text-label-md font-label-md text-primary font-semibold hover:text-[#C95D16] transition-colors flex items-center gap-1">
+<span>[+ Apply to Event Budget]</span>
+</button>
+</div>
+<!-- Table -->
+<div class="border border-[#E7E5E2] rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F7F7F5] border-b border-[#E7E5E2]">
+<th class="py-2.5 px-4 text-label-sm font-label-sm text-[#747474] font-semibold">Expense Item</th>
+<th class="py-2.5 px-4 text-label-sm font-label-sm text-[#747474] font-semibold">Logistical Scope &amp; Partner Strategy</th>
+<th class="py-2.5 px-4 text-label-sm font-label-sm text-[#747474] font-semibold">Status</th>
+<th class="py-2.5 px-4 text-label-sm font-label-sm text-[#747474] font-semibold text-right">Allocation</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#E7E5E2] bg-[#FFFFFF] text-body-md font-body-md">
+<tr class="hover:bg-[#F7F7F5] transition-colors">
+<td class="py-3 px-4 font-body-md-medium font-medium text-[#252525]">Floral &amp; Mandap Decor</td>
+<td class="py-3 px-4 text-[#747474]">Direct local flower market partner (KR Market hub)</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded-[6px] bg-[#EAF6EE] text-[#287A4B] text-label-sm font-label-sm font-medium">Allocated</span>
+</td>
+<td class="py-3 px-4 text-right font-medium text-[#252525] font-mono tabular-nums">₹65,000</td>
+</tr>
+<tr class="hover:bg-[#F7F7F5] transition-colors">
+<td class="py-3 px-4 font-body-md-medium font-medium text-[#252525]">Sound, Lighting &amp; DJ</td>
+<td class="py-3 px-4 text-[#747474]">Acoustic baseline package + 6 warm ambient LED rigs</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded-[6px] bg-[#EAF6EE] text-[#287A4B] text-label-sm font-label-sm font-medium">Allocated</span>
+</td>
+<td class="py-3 px-4 text-right font-medium text-[#252525] font-mono tabular-nums">₹35,000</td>
+</tr>
+<tr class="hover:bg-[#F7F7F5] transition-colors">
+<td class="py-3 px-4 font-body-md-medium font-medium text-[#252525]">Favors &amp; Guest Welcome</td>
+<td class="py-3 px-4 text-[#747474]">Handcrafted Mysore sandalwood incense &amp; filter coffee blends</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded-[6px] bg-[#EAF6EE] text-[#287A4B] text-label-sm font-label-sm font-medium">Allocated</span>
+</td>
+<td class="py-3 px-4 text-right font-medium text-[#252525] font-mono tabular-nums">₹20,000</td>
+</tr>
+<tr class="hover:bg-[#F7F7F5] transition-colors bg-[#F7F7F5]/50">
+<td class="py-3 px-4 font-body-md-medium font-medium text-[#252525]">Contingency Buffer</td>
+<td class="py-3 px-4 text-[#747474]">Unforeseen weather enclosure / overtime generator margin</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded-[6px] bg-[#FEF6EB] text-[#A86413] text-label-sm font-label-sm font-medium">Reserve</span>
+</td>
+<td class="py-3 px-4 text-right font-medium text-[#252525] font-mono tabular-nums">₹45,000</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="border-t-2 border-[#E7E5E2] bg-[#FFFFFF]">
+<td class="py-3 px-4 font-body-md-medium font-semibold text-[#252525]" colspan="3">Total Proposed Allocation</td>
+<td class="py-3 px-4 text-right font-semibold text-[#252525] font-mono tabular-nums">₹1,65,000</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<!-- Section 3: Upcoming 45-Day Planning Milestones -->
+<div class="bg-surface-container-lowest border border-[#E7E5E2] rounded-xl p-6 space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-[#E7E5E2]">
+<div>
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wider">Timeline Execution</span>
+<h2 class="text-section-title font-section-title text-[#252525] font-semibold">
+                  Upcoming 45-Day Planning Milestones
+                </h2>
+</div>
+<span class="text-label-sm font-label-sm text-[#747474]">4 Core Deliverables</span>
+</div>
+<!-- Milestone Checklist -->
+<div class="relative pl-6 space-y-4 before:content-[''] before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-[1px] before:bg-[#E7E5E2]">
+<!-- Milestone Item 1 -->
+<div class="relative flex items-center justify-between p-3.5 bg-[#FFFFFF] border border-[#E7E5E2] rounded-lg hover:border-[#D5D3CF] transition-all">
+<span class="absolute -left-[27px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-primary-container border-2 border-[#FFFFFF] inline-block"></span>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-[4px] bg-[#F7F7F5] border border-[#E7E5E2] font-mono text-caption font-caption font-semibold text-[#252525]">Day -45</span>
+<span class="font-body-md-medium text-[#252525]">Finalize floral mockups with Bloom &amp; Co.</span>
+</div>
+<p class="text-caption font-caption text-[#747474] pl-1">Review test arrangements for the mandap arch and table centerpieces.</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-[#FFFFFF] border border-[#E7E5E2] text-label-sm font-label-sm text-[#252525] hover:bg-[#F7F7F5] hover:border-primary-container transition-all flex items-center gap-1.5 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary-container">add_task</span>
+<span>Accept to Tasks</span>
+</button>
+</div>
+<!-- Milestone Item 2 -->
+<div class="relative flex items-center justify-between p-3.5 bg-[#FFFFFF] border border-[#E7E5E2] rounded-lg hover:border-[#D5D3CF] transition-all">
+<span class="absolute -left-[27px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-primary-container border-2 border-[#FFFFFF] inline-block"></span>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-[4px] bg-[#F7F7F5] border border-[#E7E5E2] font-mono text-caption font-caption font-semibold text-[#252525]">Day -30</span>
+<span class="font-body-md-medium text-[#252525]">Confirm final guest dietary restrictions with Royal Caterers</span>
+</div>
+<p class="text-caption font-caption text-[#747474] pl-1">Collate Jain, vegan, and nut-allergy count across 180 RSVP responses.</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-[#FFFFFF] border border-[#E7E5E2] text-label-sm font-label-sm text-[#252525] hover:bg-[#F7F7F5] hover:border-primary-container transition-all flex items-center gap-1.5 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary-container">add_task</span>
+<span>Accept to Tasks</span>
+</button>
+</div>
+<!-- Milestone Item 3 -->
+<div class="relative flex items-center justify-between p-3.5 bg-[#FFFFFF] border border-[#E7E5E2] rounded-lg hover:border-[#D5D3CF] transition-all">
+<span class="absolute -left-[27px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-primary-container border-2 border-[#FFFFFF] inline-block"></span>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-[4px] bg-[#F7F7F5] border border-[#E7E5E2] font-mono text-caption font-caption font-semibold text-[#252525]">Day -15</span>
+<span class="font-body-md-medium text-[#252525]">Conduct acoustic rehearsal at Taj West End lawn</span>
+</div>
+<p class="text-caption font-caption text-[#747474] pl-1">Sound check for decibel limits and audio projection during evening wind shifts.</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-[#FFFFFF] border border-[#E7E5E2] text-label-sm font-label-sm text-[#252525] hover:bg-[#F7F7F5] hover:border-primary-container transition-all flex items-center gap-1.5 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary-container">add_task</span>
+<span>Accept to Tasks</span>
+</button>
+</div>
+<!-- Milestone Item 4 -->
+<div class="relative flex items-center justify-between p-3.5 bg-[#FFFFFF] border border-[#E7E5E2] rounded-lg hover:border-[#D5D3CF] transition-all">
+<span class="absolute -left-[27px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-primary-container border-2 border-[#FFFFFF] inline-block"></span>
+<div class="space-y-0.5">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-[4px] bg-[#F7F7F5] border border-[#E7E5E2] font-mono text-caption font-caption font-semibold text-[#252525]">Day -7</span>
+<span class="font-body-md-medium text-[#252525]">Distribute vendor contact sheet to wedding party</span>
+</div>
+<p class="text-caption font-caption text-[#747474] pl-1">Finalized escalation ladder and emergency dispatch protocols.</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-[#FFFFFF] border border-[#E7E5E2] text-label-sm font-label-sm text-[#252525] hover:bg-[#F7F7F5] hover:border-primary-container transition-all flex items-center gap-1.5 flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary-container">add_task</span>
+<span>Accept to Tasks</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Assistant Controls & Parameter Adjustments (4 cols) -->
+<div class="col-span-4 space-y-6">
+<!-- Plan Parameters Card -->
+<div class="bg-surface-container-lowest border border-[#E7E5E2] rounded-xl p-5 space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-[#E7E5E2]">
+<h3 class="text-section-title font-section-title text-[#252525] font-semibold">Plan Parameters</h3>
+<button class="text-label-sm font-label-sm text-[#747474] hover:text-[#252525] transition-colors">Reset</button>
+</div>
+<!-- Param 1: Budget Flexibility -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-md font-label-md">
+<span class="text-[#252525] font-medium">Budget Flexibility</span>
+<span class="font-mono text-[#747474] font-semibold">± 10%</span>
+</div>
+<input class="w-full h-1.5 bg-[#E7E5E2] rounded-lg appearance-none cursor-pointer accent-[#E87524]" max="20" min="0" type="range" value="10"/>
+<div class="flex justify-between text-caption font-caption text-[#747474]">
+<span>Strict (0%)</span>
+<span>Adaptive (±20%)</span>
+</div>
+</div>
+<!-- Param 2: Guest Margin -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-md font-label-md">
+<span class="text-[#252525] font-medium">Guest RSVP Margin</span>
+<span class="font-mono text-[#747474] font-semibold">± 15 Guests</span>
+</div>
+<input class="w-full h-1.5 bg-[#E7E5E2] rounded-lg appearance-none cursor-pointer accent-[#E87524]" max="30" min="5" type="range" value="15"/>
+<div class="flex justify-between text-caption font-caption text-[#747474]">
+<span>±5 Pax</span>
+<span>±30 Pax</span>
+</div>
+</div>
+<!-- Param 3: Priority Slider -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-label-md font-label-md">
+<span class="text-[#252525] font-medium">Priority Triangulation</span>
+<span class="text-caption font-caption text-[#E87524] font-semibold uppercase">Decor Focused</span>
+</div>
+<input class="w-full h-1.5 bg-[#E7E5E2] rounded-lg appearance-none cursor-pointer accent-[#E87524]" max="3" min="1" type="range" value="2"/>
+<div class="grid grid-cols-3 text-center text-caption font-caption text-[#747474]">
+<span class="text-left">Venue</span>
+<span>Decor</span>
+<span class="text-right">Food</span>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full bg-[#FFFFFF] border border-[#E7E5E2] text-[#252525] hover:bg-[#F7F7F5] hover:border-[#D5D3CF] py-2 px-3 rounded-lg text-body-md-medium font-body-md-medium transition-all flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Recompute Inference</span>
+</button>
+</div>
+</div>
+<!-- Action History & Export Card -->
+<div class="bg-surface-container-lowest border border-[#E7E5E2] rounded-xl p-5 space-y-4">
+<h3 class="text-section-title font-section-title text-[#252525] font-semibold pb-3 border-b border-[#E7E5E2]">
+              Action History &amp; Export
+            </h3>
+<div class="space-y-2">
+<button class="w-full text-left p-2.5 rounded-lg border border-[#E7E5E2] hover:bg-[#F7F7F5] transition-colors flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#747474] text-[20px]">picture_as_pdf</span>
+<span class="text-label-md font-label-md text-[#252525] font-medium">Export Plan as PDF / Print</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-[#747474]">chevron_right</span>
+</button>
+<button class="w-full text-left p-2.5 rounded-lg border border-[#E7E5E2] hover:bg-[#F7F7F5] transition-colors flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#747474] text-[20px]">content_copy</span>
+<span class="text-label-md font-label-md text-[#252525] font-medium">Copy Structured Text</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-[#747474]">chevron_right</span>
+</button>
+</div>
+<div class="pt-3 border-t border-[#E7E5E2] space-y-2">
+<div class="flex items-center justify-between text-caption font-caption text-[#747474]">
+<span class="font-semibold uppercase tracking-wider">Version History</span>
+<span class="px-1.5 py-0.5 rounded bg-[#F7F7F5] border border-[#E7E5E2] text-[#252525] font-mono">v2.1 current</span>
+</div>
+<ul class="text-label-sm font-label-sm text-[#747474] space-y-2">
+<li class="flex items-center justify-between py-1 border-b border-[#E7E5E2]/50">
+<span>v2.1 · Re-allocated Floral buffer</span>
+<span class="text-caption font-caption text-[#747474]">10m ago</span>
+</li>
+<li class="flex items-center justify-between py-1 border-b border-[#E7E5E2]/50">
+<span>v2.0 · Initial 45-day synthesis</span>
+<span class="text-caption font-caption text-[#747474]">2h ago</span>
+</li>
+<li class="flex items-center justify-between py-1">
+<span>v1.0 · Base parameters set</span>
+<span class="text-caption font-caption text-[#747474]">Yesterday</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- AI Model Audit Summary -->
+<div class="bg-[#F7F7F5] border border-[#E7E5E2] rounded-xl p-4 text-caption font-caption text-[#747474] space-y-2">
+<div class="flex items-center gap-2 text-[#252525] font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Model Confidence: 94.2%</span>
+</div>
+<p>
+              Inference checked against 240+ verified Bangalore wedding contracts (2024-2025). Price points strictly within local market tolerance bands.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

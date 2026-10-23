@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gatherly — Planning Overview</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Inter Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#e3e2e2",
+            "surface-tint": "#9a4600",
+            "on-background": "#1b1c1c",
+            "primary-container": "#e87524",
+            "inverse-on-surface": "#f3f0ef",
+            "secondary-fixed": "#e3e2e2",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#eae7e7",
+            "primary-fixed": "#ffdbc9",
+            "background": "#fcf9f8",
+            "surface-container-highest": "#e4e2e1",
+            "surface-variant": "#e4e2e1",
+            "on-surface-variant": "#574237",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+            "outline-variant": "#dec1b2",
+            "outline": "#8a7265",
+            "on-primary-fixed": "#321200",
+            "on-secondary-container": "#646464",
+            "on-tertiary-fixed-variant": "#783100",
+            "on-surface": "#1b1c1c",
+            "primary-fixed-dim": "#ffb68d",
+            "secondary-fixed-dim": "#c7c6c6",
+            "surface-container": "#f0eded",
+            "surface-container-lowest": "#ffffff",
+            "on-secondary-fixed": "#1b1c1c",
+            "inverse-surface": "#303030",
+            "tertiary-container": "#e8742e",
+            "surface-bright": "#fcf9f8",
+            "surface-container-low": "#f6f3f2",
+            "secondary": "#5e5e5e",
+            "on-error": "#ffffff",
+            "surface-dim": "#dcd9d9",
+            "on-primary-fixed-variant": "#763300",
+            "on-secondary-fixed-variant": "#464747",
+            "surface": "#fcf9f8",
+            "inverse-primary": "#ffb68d",
+            "on-tertiary-fixed": "#341100",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#ffb691",
+            "primary": "#9a4600",
+            "tertiary": "#9e4300",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed": "#ffdbcb",
+            "on-primary-container": "#4f2000",
+            "on-tertiary-container": "#501e00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "space-xl": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-md-medium": ["Inter", "sans-serif"],
+            "headline-md": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "caption": ["Inter", "sans-serif"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "headline-lg": ["Inter", "sans-serif"],
+            "section-title": ["Inter", "sans-serif"],
+            "numeric-stat": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "headline-lg-mobile": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"]
+          },
+          "fontSize": {
+            "body-md-medium": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "caption": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "section-title": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "numeric-stat": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #F7F7F5;
+      color: #252525;
+      font-family: 'Inter', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Strictly disable rounded badges that violate non-pill rule */
+    .chip-badge {
+      border-radius: 6px;
+    }
+    .card-solid {
+      background-color: #FFFFFF;
+      border: 1px solid #E7E5E2;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="h-full bg-[#F7F7F5] text-on-surface antialiased overflow-x-hidden">
+<!-- Left Sidebar Navigation (Docked left, w-64, fixed) -->
+<aside class="fixed left-0 top-0 h-screen w-64 flex flex-col justify-between p-4 z-40 bg-surface-container-lowest border-r border-outline-variant/30">
+<!-- Top Brand & Navigation Section -->
+<div class="flex flex-col gap-4">
+<!-- Logo Header -->
+<div class="flex items-center gap-3 px-2 py-2">
+<div class="w-8 h-8 rounded-lg bg-[#E87524] flex items-center justify-center text-white font-bold text-headline-sm">
+<span class="material-symbols-outlined text-white text-[20px]" data-icon="event_note">event_note</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-semibold text-primary">Gatherly</span>
+<span class="text-caption font-caption text-secondary">Event Planning Assistant</span>
+</div>
+</div>
+<!-- Main Navigation Menu -->
+<nav class="flex flex-col space-y-1">
+<!-- Overview (Active) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#FFF1E5] text-[#E87524] font-medium border-l-4 border-[#E87524] transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[#E87524] text-[20px] fill" data-icon="dashboard">dashboard</span>
+<span class="text-label-md font-label-md">Overview</span>
+</a>
+<!-- My Events -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="event">event</span>
+<span class="text-label-md font-label-md">My Events</span>
+</a>
+<!-- Calendar -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="calendar_today">calendar_today</span>
+<span class="text-label-md font-label-md">Calendar</span>
+</a>
+<!-- Tasks -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="check_box">check_box</span>
+<span class="text-label-md font-label-md">Tasks</span>
+</a>
+<!-- Guests -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="group">group</span>
+<span class="text-label-md font-label-md">Guests</span>
+</a>
+<!-- Vendors -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="storefront">storefront</span>
+<span class="text-label-md font-label-md">Vendors</span>
+</a>
+<!-- Budget & Expenses -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="payments">payments</span>
+<span class="text-label-md font-label-md">Budget &amp; Expenses</span>
+</a>
+<!-- AI Planner -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-[#E87524] text-[20px]" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-label-md font-label-md">AI Planner</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Footer Section -->
+<div class="flex flex-col gap-2 pt-4 border-t border-[#E7E5E2]">
+<!-- Secondary CTA -->
+<button class="w-full bg-[#E87524] hover:bg-[#C95D16] active:bg-[#A94F13] text-white py-2 px-3 rounded-lg text-label-md font-label-md font-medium transition-colors flex items-center justify-center gap-1.5 shadow-none">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span>+ Create Event</span>
+</button>
+<!-- Help & Support -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium text-label-md font-label-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="help">help</span>
+<span>Help &amp; Support</span>
+</a>
+<!-- Log Out -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container font-medium text-label-md font-label-md transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="logout">logout</span>
+<span>Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 z-30 bg-surface-container-lowest border-b border-[#E7E5E2]">
+<!-- Search and Context -->
+<div class="flex items-center gap-6 w-1/2">
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-secondary text-[18px]" data-icon="search">search</span>
+<input class="w-full h-10 pl-9 pr-3 bg-white border border-[#E7E5E2] rounded-lg text-body-md font-body-md text-[#252525] placeholder-[#747474] focus:outline-none focus:border-[#E87524] transition-all" placeholder="Search events, vendors, tasks..." type="text"/>
+</div>
+<!-- Workspace Context Indicator -->
+<div class="flex items-center gap-2 px-3 py-1.5 bg-[#F7F7F5] border border-[#E7E5E2] rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="folder_shared">folder_shared</span>
+<span class="text-label-md font-label-md text-on-surface font-semibold">Workspace: Annual Gala 2025</span>
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+</div>
+<!-- Trailing Actions & Profile -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-secondary hover:text-on-surface hover:bg-[#F7F7F5] rounded-lg transition-colors relative" title="Notifications">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#E87524] rounded-full"></span>
+</button>
+<button class="p-2 text-secondary hover:text-on-surface hover:bg-[#F7F7F5] rounded-lg transition-colors" title="Help">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+</button>
+<div class="h-6 w-[1px] bg-[#E7E5E2]"></div>
+<button class="bg-[#E87524] hover:bg-[#C95D16] active:bg-[#A94F13] text-white py-2 px-4 rounded-lg text-label-md font-label-md font-medium transition-colors flex items-center gap-1.5 shadow-none">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span>+ Create Event</span>
+</button>
+<!-- Profile Avatar -->
+<div class="flex items-center gap-3 pl-2 cursor-pointer">
+<div class="w-9 h-9 rounded-full bg-[#E7E5E2] border border-[#D5D3CF] flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional headshot portrait of an Indian female event director with tied back hair wearing a dark blazer in front of a warm neutral studio background with crisp natural daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv-7L2gBbMgu_NGLpB2OcLLd4LDy-CudIti6DLQtHpUVTgVbC6NhTeKfNoAvP9e_jVkR2PfR_JYgIyv23vLcWymgb-4Mqz51fHhlyUP-eOvgseg-Tcl-XnrG3Q372sILRNbgZETA2mK6i-Wqw1KUbEPPgHZUZXGA7GuAhVEpPkRLKsCbqqYx6w6dnbdLrULe9OWEFkGursHbTSk5Y9ruSwSfIZSpbjstVVPl2aAbs4TVdzO9TBKQxR"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Docked offset left-64, top-16) -->
+<main class="ml-64 pt-16 min-h-screen bg-[#F7F7F5]">
+<div class="max-w-[1280px] mx-auto px-8 py-8 flex flex-col gap-8">
+<!-- Page Header -->
+<div class="flex flex-col gap-1">
+<h1 class="text-headline-lg font-headline-lg text-[#252525] font-semibold tracking-tight">Good evening. Here's your planning overview.</h1>
+<p class="text-body-lg font-body-lg text-[#747474]">Keep every detail moving, from the first idea to the final celebration.</p>
+</div>
+<!-- Top Row: 4 Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Metric 1: Upcoming Events -->
+<div class="card-solid p-5 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wider">Upcoming Events</span>
+<span class="chip-badge px-2 py-0.5 bg-[#FFF1E5] text-[#C95D16] border border-[#FBD9BE] text-label-sm font-label-sm font-medium">2 this quarter</span>
+</div>
+<div class="mt-3">
+<div class="text-numeric-stat font-numeric-stat text-[#252525] font-semibold">3 Active</div>
+<p class="text-label-md font-label-md text-[#747474] mt-1">Across 2 personal &amp; 1 corporate</p>
+</div>
+</div>
+<!-- Metric 2: Total Planned Budget -->
+<div class="card-solid p-5 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wider">Total Planned Budget</span>
+<span class="chip-badge px-2 py-0.5 bg-[#F7F7F5] text-[#747474] border border-[#E7E5E2] text-label-sm font-label-sm font-medium">Aggregate</span>
+</div>
+<div class="mt-3">
+<div class="text-numeric-stat font-numeric-stat text-[#252525] font-semibold">₹5,95,000</div>
+<p class="text-label-md font-label-md text-[#747474] mt-1">₹3,42,000 spent · 57% utilized</p>
+<!-- Progress Bar -->
+<div class="w-full bg-[#E7E5E2] h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-[#E87524] h-full" style="width: 57%;"></div>
+</div>
+</div>
+</div>
+<!-- Metric 3: Tasks Completed -->
+<div class="card-solid p-5 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wider">Tasks Completed</span>
+<span class="chip-badge px-2 py-0.5 bg-[#EAF6EE] text-[#287A4B] text-label-sm font-label-sm font-medium">58% on track</span>
+</div>
+<div class="mt-3">
+<div class="text-numeric-stat font-numeric-stat text-[#252525] font-semibold">48 / 82</div>
+<p class="text-label-md font-label-md text-[#747474] mt-1">12 tasks due this workweek</p>
+</div>
+</div>
+<!-- Metric 4: Pending Decisions -->
+<div class="card-solid p-5 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-caption font-caption text-[#747474] font-semibold uppercase tracking-wider">Pending Decisions</span>
+<span class="chip-badge px-2 py-0.5 bg-[#FEF6EB] text-[#A86413] text-label-sm font-label-sm font-medium">3 urgent</span>
+</div>
+<div class="mt-3">
+<div class="text-numeric-stat font-numeric-stat text-[#252525] font-semibold">7 Items</div>
+<p class="text-label-md font-label-md text-[#747474] mt-1">Vendor quote approvals &amp; menus</p>
+</div>
+</div>
+</div>
+<!-- Main Two-Column Layout (8-col / 4-col) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column (8 cols): Primary Event Planning Engine -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- Section: Active Events Card -->
+<div class="card-solid">
+<!-- Header with Quick Filter Tabs -->
+<div class="p-6 border-b border-[#E7E5E2] flex items-center justify-between">
+<div>
+<h2 class="text-section-title font-section-title text-[#252525] font-semibold">Active Events</h2>
+<p class="text-label-md font-label-md text-[#747474] mt-0.5">Prioritized by target milestone date</p>
+</div>
+<!-- Quick Filter Tabs -->
+<div class="flex items-center gap-1 bg-[#F7F7F5] p-1 border border-[#E7E5E2] rounded-lg">
+<button class="px-3 py-1 rounded bg-[#FFFFFF] text-[#252525] border border-[#E7E5E2] text-label-sm font-label-sm font-medium shadow-none">All (3)</button>
+<button class="px-3 py-1 rounded text-[#747474] hover:text-[#252525] text-label-sm font-label-sm font-medium">In Progress</button>
+<button class="px-3 py-1 rounded text-[#747474] hover:text-[#252525] text-label-sm font-label-sm font-medium">Upcoming</button>
+</div>
+</div>
+<!-- Events List -->
+<div class="divide-y divide-[#E7E5E2]">
+<!-- Event Item 1: Wedding -->
+<div class="p-6 flex flex-col gap-4 hover:bg-[#F7F7F5] transition-colors duration-150">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-semibold text-[#252525]">Ananya &amp; Rohan's Wedding</span>
+<span class="chip-badge px-2 py-0.5 bg-[#EAF6EE] text-[#287A4B] text-label-sm font-label-sm font-medium">On Track</span>
+</div>
+<div class="flex items-center gap-3 text-label-md font-label-md text-[#747474]">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="event">event</span> Dec 18, 2025</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span> Taj West End, Bengaluru</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="group">group</span> 180 guests</span>
+</div>
+</div>
+<!-- Action Link -->
+<button class="flex items-center gap-1 text-[#E87524] hover:text-[#C95D16] text-label-md font-label-md font-medium border border-[#FBD9BE] bg-[#FFF1E5] px-3 py-1.5 rounded-lg transition-colors">
+<span>Continue planning</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Financials & Progress bar -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+<div class="flex flex-col">
+<span class="text-caption font-caption text-[#747474]">Budget Status</span>
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">₹4,50,000 <span class="text-[#747474] font-normal">(₹2,85,000 spent)</span></span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption font-caption text-[#747474]">Planning Progress</span>
+<div class="flex items-center gap-2 mt-0.5">
+<div class="w-full bg-[#E7E5E2] h-2 rounded-full overflow-hidden">
+<div class="bg-[#E87524] h-full" style="width: 68%;"></div>
+</div>
+<span class="text-label-sm font-label-sm font-semibold text-[#252525]">68%</span>
+</div>
+</div>
+<div class="flex flex-col sm:items-end">
+<span class="text-caption font-caption text-[#747474]">Tasks Remaining</span>
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">4 pending tasks</span>
+</div>
+</div>
+</div>
+<!-- Event Item 2: Birthday -->
+<div class="p-6 flex flex-col gap-4 hover:bg-[#F7F7F5] transition-colors duration-150">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-semibold text-[#252525]">Aarav's 10th Birthday</span>
+<span class="chip-badge px-2 py-0.5 bg-[#FFF1E5] text-[#C95D16] border border-[#FBD9BE] text-label-sm font-label-sm font-medium">Finalizing</span>
+</div>
+<div class="flex items-center gap-3 text-label-md font-label-md text-[#747474]">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="event">event</span> Nov 12, 2025</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span> Cubbon Pavilion</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="group">group</span> 35 guests</span>
+</div>
+</div>
+<button class="text-secondary hover:text-on-surface hover:bg-[#F7F7F5] border border-[#E7E5E2] px-3 py-1.5 rounded-lg text-label-md font-label-md font-medium transition-colors">
+                    Manage Details
+                  </button>
+</div>
+<!-- Financials & Progress bar -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+<div class="flex flex-col">
+<span class="text-caption font-caption text-[#747474]">Budget Status</span>
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">₹25,000 <span class="text-[#747474] font-normal">(₹14,500 spent)</span></span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption font-caption text-[#747474]">Planning Progress</span>
+<div class="flex items-center gap-2 mt-0.5">
+<div class="w-full bg-[#E7E5E2] h-2 rounded-full overflow-hidden">
+<div class="bg-[#E87524] h-full" style="width: 82%;"></div>
+</div>
+<span class="text-label-sm font-label-sm font-semibold text-[#252525]">82%</span>
+</div>
+</div>
+<div class="flex flex-col sm:items-end">
+<span class="text-caption font-caption text-[#747474]">Tasks Remaining</span>
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">2 pending tasks</span>
+</div>
+</div>
+</div>
+<!-- Event Item 3: Diwali Celebration -->
+<div class="p-6 flex flex-col gap-4 hover:bg-[#F7F7F5] transition-colors duration-150">
+<div class="flex items-start justify-between">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-headline-sm font-headline-sm font-semibold text-[#252525]">Community Diwali Celebration</span>
+<span class="chip-badge px-2 py-0.5 bg-[#FEF6EB] text-[#A86413] text-label-sm font-label-sm font-medium">Needs Attention</span>
+</div>
+<div class="flex items-center gap-3 text-label-md font-label-md text-[#747474]">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="event">event</span> Nov 01, 2025</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span> Indiranagar Club Grounds</span>
+<span>•</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="group">group</span> 250 attendees</span>
+</div>
+</div>
+<button class="text-secondary hover:text-on-surface hover:bg-[#F7F7F5] border border-[#E7E5E2] px-3 py-1.5 rounded-lg text-label-md font-label-md font-medium transition-colors">
+                    Manage Details
+                  </button>
+</div>
+<!-- Financials & Progress bar -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+<div class="flex flex-col">
+<span class="text-caption font-caption text-[#747474]">Budget Status</span>
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">₹1,20,000 <span class="text-[#747474] font-normal">(₹42,500 spent)</span></span>
+</div>
+<div class="flex flex-col">
+<span class="text-caption font-caption text-[#747474]">Planning Progress</span>
+<div class="flex items-center gap-2 mt-0.5">
+<div class="w-full bg-[#E7E5E2] h-2 rounded-full overflow-hidden">
+<div class="bg-[#A86413] h-full" style="width: 41%;"></div>
+</div>
+<span class="text-label-sm font-label-sm font-semibold text-[#252525]">41%</span>
+</div>
+</div>
+<div class="flex flex-col sm:items-end">
+<span class="text-caption font-caption text-[#747474]">Tasks Remaining</span>
+<span class="text-body-md-medium font-body-md-medium text-[#B42318] font-semibold">8 pending tasks</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Upcoming Deadlines Card -->
+<div class="card-solid">
+<div class="p-6 border-b border-[#E7E5E2] flex items-center justify-between">
+<div>
+<h2 class="text-section-title font-section-title text-[#252525] font-semibold">Upcoming Deadlines</h2>
+<p class="text-label-md font-label-md text-[#747474] mt-0.5">Actionable milestones needing confirmation</p>
+</div>
+<button class="text-[#E87524] text-label-md font-label-md font-medium hover:underline flex items-center gap-1">
+<span>View all 82 tasks</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Deadlines List with structured tokens -->
+<div class="divide-y divide-[#E7E5E2]">
+<!-- Item 1: Overdue -->
+<div class="p-4 px-6 flex items-center justify-between hover:bg-[#F7F7F5] transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded border border-[#747474] flex items-center justify-center cursor-pointer hover:border-[#E87524]"></div>
+<div class="flex flex-col">
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">Finalize catering headcount with Royal Caterers</span>
+<span class="text-caption font-caption text-[#747474]">Ananya &amp; Rohan's Wedding</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="chip-badge px-2 py-0.5 bg-[#FDF2F2] text-[#B42318] text-label-sm font-label-sm font-medium">Overdue (Yesterday)</span>
+<span class="chip-badge px-2 py-0.5 bg-[#FDF2F2] text-[#B42318] border border-[#FADBD8] text-label-sm font-label-sm font-medium">High Priority</span>
+</div>
+</div>
+<!-- Item 2: Due tomorrow -->
+<div class="p-4 px-6 flex items-center justify-between hover:bg-[#F7F7F5] transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded border border-[#747474] flex items-center justify-center cursor-pointer hover:border-[#E87524]"></div>
+<div class="flex flex-col">
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">Sign DJ &amp; Sound equipment contract</span>
+<span class="text-caption font-caption text-[#747474]">Community Diwali Celebration</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="chip-badge px-2 py-0.5 bg-[#FFF1E5] text-[#C95D16] text-label-sm font-label-sm font-medium">Due tomorrow (Oct 24)</span>
+<span class="chip-badge px-2 py-0.5 bg-[#F7F7F5] text-[#747474] border border-[#E7E5E2] text-label-sm font-label-sm font-medium">Medium Priority</span>
+</div>
+</div>
+<!-- Item 3: Normal due date -->
+<div class="p-4 px-6 flex items-center justify-between hover:bg-[#F7F7F5] transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded border border-[#747474] flex items-center justify-center cursor-pointer hover:border-[#E87524]"></div>
+<div class="flex flex-col">
+<span class="text-body-md-medium font-body-md-medium text-[#252525]">Review venue floor plan &amp; seating chart</span>
+<span class="text-caption font-caption text-[#747474]">Ananya &amp; Rohan's Wedding</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="chip-badge px-2 py-0.5 bg-[#F7F7F5] text-[#747474] text-label-sm font-label-sm font-medium">Due Oct 27</span>
+<span class="chip-badge px-2 py-0.5 bg-[#F7F7F5] text-[#747474] border border-[#E7E5E2] text-label-sm font-label-sm font-medium">Normal</span>
+</div>
+</div>
+<!-- Item 4: Completed -->
+<div class="p-4 px-6 flex items-center justify-between bg-[#F7F7F5]/50 hover:bg-[#F7F7F5] transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded bg-[#E87524] border border-[#E87524] flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[14px]" data-icon="check">check</span>
+</div>
+<div class="flex flex-col">
+<span class="text-body-md-medium font-body-md-medium text-[#747474] line-through">Send formal e-invitations via WhatsApp/Email</span>
+<span class="text-caption font-caption text-[#747474]">Aarav's 10th Birthday</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="chip-badge px-2 py-0.5 bg-[#EAF6EE] text-[#287A4B] text-label-sm font-label-sm font-medium">Completed (Oct 20)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (4 cols): Side Panels & Operational Helpers -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Widget 1: Today's Agenda & Calendar Snapshot -->
+<div class="card-solid p-6">
+<div class="flex items-center justify-between pb-4 border-b border-[#E7E5E2]">
+<div class="flex flex-col">
+<span class="text-section-title font-section-title font-semibold text-[#252525]">Today's Agenda</span>
+<span class="text-label-sm font-label-sm text-[#747474]">Wednesday, October 23, 2025</span>
+</div>
+<span class="material-symbols-outlined text-[#747474] text-[20px]" data-icon="calendar_month">calendar_month</span>
+</div>
+<!-- Schedule Items -->
+<div class="flex flex-col gap-4 mt-4 relative">
+<!-- Timeline node line -->
+<div class="absolute left-2.5 top-2 bottom-2 w-[1px] bg-[#E7E5E2]"></div>
+<!-- Event Slot 1 -->
+<div class="flex items-start gap-4 relative z-10 pl-1">
+<div class="w-3 h-3 rounded-full bg-[#E87524] ring-4 ring-white mt-1 shrink-0"></div>
+<div class="flex flex-col flex-1 bg-[#F7F7F5] p-3 rounded-lg border border-[#E7E5E2]">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm font-semibold text-[#E87524]">3:00 PM – 3:45 PM</span>
+<span class="chip-badge px-1.5 py-0.2 bg-white text-[#747474] border border-[#E7E5E2] text-caption font-caption">Site Visit</span>
+</div>
+<span class="text-body-md-medium font-body-md-medium text-[#252525] mt-1">Florist walkthrough</span>
+<span class="text-caption font-caption text-[#747474]">Taj West End with BloomCraft Studios</span>
+</div>
+</div>
+<!-- Event Slot 2 -->
+<div class="flex items-start gap-4 relative z-10 pl-1">
+<div class="w-3 h-3 rounded-full bg-[#E87524] ring-4 ring-white mt-1 shrink-0"></div>
+<div class="flex flex-col flex-1 bg-[#F7F7F5] p-3 rounded-lg border border-[#E7E5E2]">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm font-semibold text-[#E87524]">5:30 PM – 6:15 PM</span>
+<span class="chip-badge px-1.5 py-0.2 bg-white text-[#747474] border border-[#E7E5E2] text-caption font-caption">Call</span>
+</div>
+<span class="text-body-md-medium font-body-md-medium text-[#252525] mt-1">Photographer briefing</span>
+<span class="text-caption font-caption text-[#747474]">Shot list review with Lens &amp; Lights</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 py-2 border border-[#E7E5E2] rounded-lg text-label-md font-label-md font-medium text-[#252525] hover:bg-[#F7F7F5] transition-colors">
+              Open Full Schedule
+            </button>
+</div>
+<!-- Widget 2: Budget Utilization Summary -->
+<div class="card-solid p-6">
+<div class="flex items-center justify-between pb-3 border-b border-[#E7E5E2]">
+<span class="text-section-title font-section-title font-semibold text-[#252525]">Budget Breakdown</span>
+<span class="chip-badge px-2 py-0.5 bg-[#F7F7F5] text-[#747474] border border-[#E7E5E2] text-label-sm font-label-sm">Active Events</span>
+</div>
+<!-- Categories Breakdown -->
+<div class="flex flex-col gap-4 mt-4">
+<!-- Category 1 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-label-md font-label-md">
+<span class="text-[#252525] font-medium">Venue &amp; Accommodations</span>
+<span class="text-[#252525] font-semibold">45% <span class="text-[#747474] font-normal">(₹2,10,000)</span></span>
+</div>
+<div class="w-full bg-[#E7E5E2] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#E87524] h-full" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Category 2 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-label-md font-label-md">
+<span class="text-[#252525] font-medium">Catering &amp; Bar</span>
+<span class="text-[#252525] font-semibold">60% <span class="text-[#747474] font-normal">(₹1,80,000)</span></span>
+</div>
+<div class="w-full bg-[#E7E5E2] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#E87524] h-full" style="width: 60%;"></div>
+</div>
+</div>
+<!-- Category 3 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-label-md font-label-md">
+<span class="text-[#252525] font-medium">Decor &amp; Production</span>
+<span class="text-[#252525] font-semibold">30% <span class="text-[#747474] font-normal">(₹75,000)</span></span>
+</div>
+<div class="w-full bg-[#E7E5E2] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#E87524] h-full" style="width: 30%;"></div>
+</div>
+</div>
+<!-- Category 4 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between text-label-md font-label-md">
+<span class="text-[#252525] font-medium">Misc &amp; Contingency</span>
+<span class="text-[#252525] font-semibold">15% <span class="text-[#747474] font-normal">(₹25,000)</span></span>
+</div>
+<div class="w-full bg-[#E7E5E2] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#E87524] h-full" style="width: 15%;"></div>
+</div>
+</div>
+</div>
+<div class="mt-5 pt-3 border-t border-[#E7E5E2] flex items-center justify-between text-caption font-caption text-[#747474]">
+<span>Remaining safety buffer</span>
+<span class="font-semibold text-[#287A4B]">₹2,53,000 Available</span>
+</div>
+</div>
+<!-- Widget 3: Contextual AI Planning Assistant Quick Assist -->
+<div class="bg-[#FFF1E5] border border-[#E87524] rounded-lg p-5 flex flex-col gap-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#E87524] text-[20px]" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-section-title font-section-title font-semibold text-[#252525]">AI Planning Quick Assist</span>
+</div>
+<p class="text-body-md font-body-md text-[#252525]">
+              Instant intelligence for supplier negotiation, guest lists, and logistics schedules.
+            </p>
+<!-- Predefined AI Prompt Pills -->
+<div class="flex flex-col gap-2">
+<button class="text-left p-2.5 bg-white border border-[#FBD9BE] rounded-lg text-label-sm font-label-sm text-[#252525] hover:border-[#E87524] transition-colors flex items-center justify-between group">
+<span class="truncate">"Find vegetarian catering options under ₹800/plate"</span>
+<span class="material-symbols-outlined text-[#E87524] text-[16px] group-hover:translate-x-0.5 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="text-left p-2.5 bg-white border border-[#FBD9BE] rounded-lg text-label-sm font-label-sm text-[#252525] hover:border-[#E87524] transition-colors flex items-center justify-between group">
+<span class="truncate">"Create 30-day wedding checklist"</span>
+<span class="material-symbols-outlined text-[#E87524] text-[16px] group-hover:translate-x-0.5 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Launch Button -->
+<button class="mt-1 w-full bg-[#E87524] hover:bg-[#C95D16] active:bg-[#A94F13] text-white py-2 px-3 rounded-lg text-label-md font-label-md font-medium transition-colors flex items-center justify-center gap-1.5 shadow-none">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat_bubble">chat_bubble</span>
+<span>Open AI Workspace</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
