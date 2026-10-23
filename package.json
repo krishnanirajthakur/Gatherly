@@ -1,0 +1,12 @@
+{
+  "name": "gatherly-workspace",
+  "version": "1.0.0",
+  "description": "Gatherly — Bring your plans together",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && npm test",
+    "build": "cd frontend && npm run build"
+  }
+}

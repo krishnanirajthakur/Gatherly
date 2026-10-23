@@ -84,7 +84,7 @@ export default function BudgetTab({ event }: BudgetTabProps) {
                       <Cell key={i} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(v: number) => formatCurrency(v, event.currency)} />
+                  <Tooltip formatter={(v: any) => formatCurrency(Number(v || 0), event.currency)} />
                 </PieChart>
               </ResponsiveContainer>
               <div className="space-y-2 mt-2">

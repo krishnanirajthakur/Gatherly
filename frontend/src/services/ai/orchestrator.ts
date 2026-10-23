@@ -63,8 +63,8 @@ function createBackendAdapter(id: string, name: string): ProviderAdapter {
     id,
     name,
     isConfigured() {
-      // Will return true only when backend health check says this provider is enabled
-      return false; // placeholder until backend is reachable
+      // Allow testing backend providers directly; will fallback to mock if unreachable
+      return true;
     },
     async generatePlan(req: PlanRequest, timeoutMs: number): Promise<PlanResponse> {
       const controller = new AbortController();
@@ -105,9 +105,9 @@ const mockAdapter: ProviderAdapter = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 const allProviders: ProviderAdapter[] = [
+  createBackendAdapter('groq', 'Groq (Cloud AI - Ultra Fast)'),
+  createBackendAdapter('ollama', 'Ollama (Local LLM)'),
   createBackendAdapter('gemini', 'Google Gemini'),
-  createBackendAdapter('groq', 'Groq'),
-  createBackendAdapter('ollama', 'Ollama (Local)'),
   createBackendAdapter('openrouter', 'OpenRouter'),
   createBackendAdapter('cloudflare', 'Cloudflare Workers AI'),
   createBackendAdapter('huggingface', 'Hugging Face'),
