@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, lazy, Suspense } from 'react';
 import { useParams, useNavigate, NavLink, Routes, Route, Navigate } from 'react-router-dom';
 import { clsx } from 'clsx';
 import { TopBar } from '@/components/layout/AppShell';
@@ -8,15 +8,15 @@ import { EVENT_TYPE_ICONS, EVENT_TYPE_LABELS, EVENT_STATUS_LABELS } from '@/util
 import { formatDate, daysUntil } from '@/utils/helpers';
 import type { Event } from '@/types';
 
-// Lazy-loaded tab components
-import OverviewTab from './tabs/OverviewTab';
-import BudgetTab from './tabs/BudgetTab';
-import TasksTab from './tabs/TasksTab';
-import VendorsTab from './tabs/VendorsTab';
-import GuestsTab from './tabs/GuestsTab';
-import CalendarTab from './tabs/CalendarTab';
-import PlannerTab from './tabs/PlannerTab';
-import EventSettingsTab from './tabs/EventSettingsTab';
+// Code-split / lazy load tab components for optimal bundle efficiency
+const OverviewTab = lazy(() => import('./tabs/OverviewTab'));
+const BudgetTab = lazy(() => import('./tabs/BudgetTab'));
+const TasksTab = lazy(() => import('./tabs/TasksTab'));
+const VendorsTab = lazy(() => import('./tabs/VendorsTab'));
+const GuestsTab = lazy(() => import('./tabs/GuestsTab'));
+const CalendarTab = lazy(() => import('./tabs/CalendarTab'));
+const PlannerTab = lazy(() => import('./tabs/PlannerTab'));
+const EventSettingsTab = lazy(() => import('./tabs/EventSettingsTab'));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Workspace Tabs config
@@ -143,17 +143,19 @@ export default function EventWorkspace({ onMenuClick }: WorkspaceProps) {
 
       {/* Tab content */}
       <div className="flex-1 overflow-y-auto">
-        <Routes>
-          <Route index element={<Navigate to="overview" replace />} />
-          <Route path="overview" element={<OverviewTab event={event} onRefresh={refresh} />} />
-          <Route path="planner" element={<PlannerTab event={event} onRefresh={refresh} />} />
-          <Route path="budget" element={<BudgetTab event={event} />} />
-          <Route path="tasks" element={<TasksTab event={event} />} />
-          <Route path="vendors" element={<VendorsTab event={event} />} />
-          <Route path="guests" element={<GuestsTab event={event} />} />
-          <Route path="calendar" element={<CalendarTab event={event} />} />
-          <Route path="settings" element={<EventSettingsTab event={event} onRefresh={refresh} />} />
-        </Routes>
+        <Suspense fallback={<div className="flex items-center justify-center p-12"><Spinner size={32} /></div>}>
+          <Routes>
+            <Route index element={<Navigate to="overview" replace />} />
+            <Route path="overview" element={<OverviewTab event={event} onRefresh={refresh} />} />
+            <Route path="planner" element={<PlannerTab event={event} onRefresh={refresh} />} />
+            <Route path="budget" element={<BudgetTab event={event} />} />
+            <Route path="tasks" element={<TasksTab event={event} />} />
+            <Route path="vendors" element={<VendorsTab event={event} />} />
+            <Route path="guests" element={<GuestsTab event={event} />} />
+            <Route path="calendar" element={<CalendarTab event={event} />} />
+            <Route path="settings" element={<EventSettingsTab event={event} onRefresh={refresh} />} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );

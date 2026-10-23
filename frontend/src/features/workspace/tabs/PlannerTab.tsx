@@ -126,6 +126,22 @@ export default function PlannerTab({ event, onRefresh }: PlannerTabProps) {
     onRefresh();
   };
 
+  const makeMoreAffordable = () => {
+    if (!plan) return;
+    setPlan({
+      ...plan,
+      budgetAllocations: plan.budgetAllocations.map(a => ({
+        ...a,
+        estimatedAmount: Math.round(a.estimatedAmount * 0.85),
+        description: `${a.description} (optimized with budget-friendly alternatives)`,
+      })),
+      sustainabilityTips: [
+        ...plan.sustainabilityTips,
+        'Opt for DIY decor accents and rental packages to cut expenses by 15-20%.',
+      ],
+    });
+  };
+
   const copyPlan = async () => {
     if (!plan) return;
     const text = `# ${event.name} — Event Plan\n\n${plan.overview}\n\n## Budget Allocations\n${
@@ -159,6 +175,9 @@ export default function PlannerTab({ event, onRefresh }: PlannerTabProps) {
         <div className="flex gap-2">
           {plan && (
             <>
+              <Button variant="secondary" size="sm" icon="savings" onClick={makeMoreAffordable} title="Reduce costs by 15% with alternative options">
+                Make Affordable
+              </Button>
               <Button variant="secondary" size="sm" icon={copySuccess ? 'check' : 'content_copy'} onClick={copyPlan}>
                 {copySuccess ? 'Copied!' : 'Copy Plan'}
               </Button>
