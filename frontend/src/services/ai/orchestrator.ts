@@ -70,7 +70,8 @@ function createBackendAdapter(id: string, name: string): ProviderAdapter {
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
-        const res = await fetch('/api/plan', {
+        const apiUrl = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/plan` : '/api/plan';
+        const res = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ provider: id, request: req }),
@@ -78,10 +79,13 @@ function createBackendAdapter(id: string, name: string): ProviderAdapter {
         });
         if (!res.ok) {
           const err = await res.json().catch(() => ({ message: 'Unknown error' }));
-          const retryable = res.status === 429 || res.status >= 500;
+          const retryable = res.status === 404 || res.status === 502 || res.status === 503 || res.status === 429 || res.status >= 500;
           throw { type: 'provider_error', providerId: id, message: err.message ?? `HTTP ${res.status}`, retryable };
         }
         return await res.json() as PlanResponse;
+      } catch (err) {
+        // Any network error (like backend not deployed or fetch failing) is retryable so circuit breaker immediately falls back
+        throw { type: 'provider_error', providerId: id, message: err instanceof Error ? err.message : 'Network failure', retryable: true };
       } finally {
         clearTimeout(timer);
       }
